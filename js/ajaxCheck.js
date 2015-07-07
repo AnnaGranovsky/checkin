@@ -2,9 +2,11 @@
 var button = $("#buttonChekIn");
   var latitude;
   var longitude;
+  var accuracy;	
 navigator.geolocation.getCurrentPosition(function(position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
+            accuracy = position.coords.accuracy;	
 			
 });
  
@@ -12,7 +14,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 
 button.click(function(){
-	$.post("../position.php",{"attr[]":[latitude,longitude]},function(data){
+	$.post("../position.php",{"attr[]":[latitude,longitude,accuracy]},function(data){
 		
 	});
 
