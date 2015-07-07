@@ -16,6 +16,6 @@ navigator.geolocation.getCurrentPosition(function(position) {
 button.click(function(){
 	$.post("../position.php",{"latitude":latitude,"longitude":longitude,"accuracy":accuracy},function(data){
 		
-	},json);
+	},"json");
 
 });
