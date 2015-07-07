@@ -75,11 +75,11 @@ function loadScript() {
 
 }
 
-// function console_markers () {
-//   for (var i = 0; i < markers.length; i++) {
-//     console.log(i+' = '+markers[i].position.A+'*'+markers[i].position.F);
-//   };
-// }
+function console_markers () {
+  for (var i = 0; i < markers.length; i++) {
+    console.log(i+' = '+markers[i].position.A+'*'+markers[i].position.F);
+  };
+}
 
 
 $( document ).ready(function() {
