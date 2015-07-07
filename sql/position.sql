@@ -13,10 +13,10 @@
 -- Дамп структуры для таблица checkin.position
 CREATE TABLE IF NOT EXISTS `position` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `u_id` int(11) DEFAULT '0',
-  `longitude` int(11) DEFAULT '0',
-  `latitude` int(11) DEFAULT '0',
-  `accuracy` int(11) DEFAULT '0',
+  `u_id` int(11) DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `accuracy` double DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
