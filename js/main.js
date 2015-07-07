@@ -1,11 +1,10 @@
-$( document ).ready(function() {
+
 
 var map;
 var markers = [];
 
 function initialize() {
   var myLatlng = new google.maps.LatLng(48.47986303, 35.0231266);
-  var myLatlng2 = new google.maps.LatLng(48.46108396, 35.0080204);
   var mapOptions = {
     zoom: 13,
     center: myLatlng
@@ -20,8 +19,14 @@ function initialize() {
   });
 
   // Adds a marker at the center of the map.
-  addMarker(myLatlng);
-  addMarker(myLatlng2);
+  $.getJSON( "position.php", function( data ) {
+    var coords = $.parseJSON(data);
+    $.each(coords, function( index, value ) {
+    var myLatlng = new google.maps.LatLng(value.latitude, value.longitude);
+    addMarker(myLatlng);
+    });
+
+});
 
 }// initialize
 
@@ -32,7 +37,6 @@ function addMarker(location) {
     map: map
   });
   markers.push(marker);
-  console.log(marker);
 }
 
 // Sets the map on all markers in the array.
@@ -67,6 +71,8 @@ function loadScript() {
   document.body.appendChild(script);
 
 
+
+
 }
 
 // function console_markers () {
@@ -76,14 +82,11 @@ function loadScript() {
 // }
 
 
-
+$( document ).ready(function() {
 loadScript();
 
-$.getJSON( "position.php", function( data ) {
-    
-    console.log(data);
-
-});
 
 
-});
+
+
+}); // document ready
