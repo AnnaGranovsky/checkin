@@ -22,8 +22,8 @@ function initialize() {
   $.getJSON( "position.php", function( data ) {
     var coords = $.parseJSON(data);
     $.each(coords, function( index, value ) {
-    var myLatlng = new google.maps.LatLng(value.latitude, value.longitude);
-    addMarker(myLatlng);
+      var myLatlng = new google.maps.LatLng(value.latitude, value.longitude);
+      addMarker(myLatlng);
     });
 
 });
