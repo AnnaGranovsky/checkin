@@ -13,4 +13,4 @@ if (isset($_POST['attr']) && !empty($_POST['attr'])){
      //добавить $u_id="", $accuracy=""
     $position1->addData($_POST['attr'][0], $_POST['attr'][1]);
 }
-var_dump($position1->listData());
+echo $position1->listData();

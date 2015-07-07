@@ -17,6 +17,6 @@ class PositionData{
     public function listData(){
         $db = Db::getInstance();
         $arr = $db->query("SELECT * FROM position");
-        return $arr;
+        return json_encode($arr);
     }
 }
