@@ -1,3 +1,5 @@
+$( document ).ready(function() {
+
 var map;
 var markers = [];
 
@@ -67,10 +69,21 @@ function loadScript() {
 
 }
 
-function console_markers () {
-  for (var i = 0; i < markers.length; i++) {
-    console.log(i+' = '+markers[i].position.A+'*'+markers[i].position.F);
-  };
-}
+// function console_markers () {
+//   for (var i = 0; i < markers.length; i++) {
+//     console.log(i+' = '+markers[i].position.A+'*'+markers[i].position.F);
+//   };
+// }
 
-window.onload = loadScript;
+
+
+loadScript();
+
+$.getJSON( "position.php", function( data ) {
+    
+    console.log(data);
+
+});
+
+
+});
