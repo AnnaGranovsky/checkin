@@ -28,6 +28,26 @@ function initialize() {
 
 });
 
+  var button = $("#buttonChekIn");
+  var latitude;
+  var longitude;
+  var accuracy; 
+navigator.geolocation.getCurrentPosition(function(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            accuracy = position.coords.accuracy;  
+      
+});
+
+button.click(function(){
+  $.post("../position.php",{"latitude":latitude,"longitude":longitude,"accuracy":accuracy},function(data){
+    
+      var myLatlng = new google.maps.LatLng(latitude, longitude);
+      addMarker(myLatlng);
+  },"json");
+
+});
+
 }// initialize
 
 // Add a marker to the map and push to the array.
