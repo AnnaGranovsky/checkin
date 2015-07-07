@@ -14,8 +14,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 
 button.click(function(){
-	$.post("../position.php",{"attr[]":[latitude,longitude,accuracy]},function(data){
+	$.post("../position.php",{"latitude":latitude,"longitude":longitude,"accuracy":accuracy},function(data){
 		
-	});
+	},json);
 
 });
