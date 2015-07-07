@@ -9,8 +9,8 @@ function my_autoload($class){
 spl_autoload_register('my_autoload');
 
 $position1 = PositionData::getInstance();
-if (isset($_POST['attr']) && !empty($_POST['attr'])){
+if (isset($_POST['latitude']) && !empty($_POST['latitude'])){
      //добавить $u_id="", $accuracy=""
-    $position1->addData($_POST['attr'][0], $_POST['attr'][1]);
+    $position1->addData($_POST['latitude'], $_POST['longitude'], $_POST['accuracy']);
 }
 echo($position1->listData());
