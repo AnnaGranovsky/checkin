@@ -23,7 +23,7 @@ class Db {
             while($row = mysqli_fetch_assoc($res)) {
                 array_push($arrayDB, $row);
             }
-            return json_encode($arrayDB);
+            return $arrayDB;
         }else{
             $res = $mysqli->query($str_query);
         }
