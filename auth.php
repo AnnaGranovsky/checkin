@@ -24,7 +24,7 @@ if (isset($_POST['email']) && isset($_POST['password'])){
 }
 ?>
 
-<form method="POST" action="login.php">
+<form method="POST" action="auth.php">
     <h3>Please enter your information</h3>
     <div>
         <label>Your email</label>
