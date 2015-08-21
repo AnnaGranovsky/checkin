@@ -1,4 +1,13 @@
-<form method="POST" action="registration.php">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkin-Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="reg-body">
+
+<form method="POST" action="registration.php" class="reg-form">
     <h3>Please enter your information</h3>
     <div>
         <label>Your email</label>
@@ -9,15 +18,23 @@
         <input type="password" placeholder="enter password" name="password" minlength="6" required>
     </div>
     <div>
+        <input type="submit" name="reg" value="Login">
+    </div>
+    <div align="center">or</div>
+    <div>
         <label>Repeat your password</label>
         <input type="password" placeholder="repeat password" name="dubl_password" minlength="6" required>
     </div>
     <div>
-        <input type="submit" value="Register">
+        <input type="submit" name="reg" value="Register">
     </div>
 </form>
 
+</body>
+</html>
+
 <?php
+session_start();
 require_once 'Db.php';
 $db = Db::getInstance();
 if (!empty($_POST['email'])){
@@ -29,7 +46,9 @@ if (!empty($_POST['email'])){
         $login = explode("@", $email);
         $inqury = "INSERT INTO users (login, password, mail) VALUES ('".$login['0']."', '".$passmd5."', '".$email."');";
         $db->query ($inqury);
-        echo "Good job man!";
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['password'] = $_POST['password'];
+        header('Location:index.php');
     }
  else {
     echo "<h4>You repeated incorrect password! Please try again.</h4>";
