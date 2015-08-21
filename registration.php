@@ -18,6 +18,7 @@
 </form>
 
 <?php
+session_start();
 require_once 'Db.php';
 $db = Db::getInstance();
 if (!empty($_POST['email'])){
@@ -29,7 +30,9 @@ if (!empty($_POST['email'])){
         $login = explode("@", $email);
         $inqury = "INSERT INTO users (login, password, mail) VALUES ('".$login['0']."', '".$passmd5."', '".$email."');";
         $db->query ($inqury);
-        echo "Good job man!";
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['password'] = $_POST['password'];
+        header('Location:index.php');
     }
  else {
     echo "<h4>You repeated incorrect password! Please try again.</h4>";
