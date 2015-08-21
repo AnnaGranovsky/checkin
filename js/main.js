@@ -40,7 +40,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 });
 
 button.click(function(){
-  $.post("../position.php",{"latitude":latitude,"longitude":longitude,"accuracy":accuracy},function(data){
+  $.post("position.php",{"latitude":latitude,"longitude":longitude,"accuracy":accuracy},function(data){
     
       var myLatlng = new google.maps.LatLng(latitude, longitude);
       addMarker(myLatlng);
