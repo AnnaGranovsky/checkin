@@ -64,6 +64,7 @@ html, body, #map-canvas {
 input[type="submit"] {
     width: 497px;
     cursor: pointer;
+    background: linear-gradient(to bottom, #e3eaed 26%,#f2f5f6 100%);
 }
 
 input[type="submit"]:hover {
