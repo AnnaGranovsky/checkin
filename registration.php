@@ -40,35 +40,41 @@ require_once 'Login.php';
 if (!empty($_SESSION['email'])){
     header('Location:index.php');
 }
-if (isset($_POST['auth']) && !empty($_POST['auth'])){
-    if (isset($_POST['email']) && isset($_POST['password'])){
-        $enter = new Login($_POST['email'], $_POST['password']);
-        $check = $enter->login();
-        if ($check){
+//проверка на запрос пост
+if (isset($_POST['email']) && isset($_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+    $enter = new Login($_POST['email'], $_POST['password']);
+    $check = $enter->login();
+    if (isset($_POST['auth']) && !empty($_POST['auth'])) {
+        //проверка авторизации
+        if ($check) {
             $_SESSION['email'] = $enter->email;
             $_SESSION['password'] = $enter->password;
+            $_SESSION['id'] = $enter->id;
             header('Location:index.php');
-        }else {
-            echo "wrong".$enter->password;
+        } else {
+            //добавить сообщение
+            echo "wrong";
         }
-    }
-}elseif (($_POST['reg']) && !empty($_POST['reg'])){
-    $db = Db::getInstance();
-    if (!empty($_POST['email'])){
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $dubPassword = $_POST['dubl_password'];
-        if ($password===$dubPassword) {
-            $passmd5 = md5($password);
-            $login = explode("@", $email);
-            $inqury = "INSERT INTO users (login, password, mail) VALUES ('".$login['0']."', '".$passmd5."', '".$email."');";
-            $db->query ($inqury);
-            $_SESSION['email'] = $_POST['email'];
-            $_SESSION['password'] = $_POST['password'];
-            header('Location:index.php');
-        }
-        else {
-            echo "<h4>You repeated incorrect password! Please try again.</h4>";
+
+    } elseif (isset($_POST['reg']) && !empty($_POST['reg'])) {
+        //регистрация
+        $db = Db::getInstance();
+        if (!empty($_POST['email'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $dubPassword = $_POST['dubl_password'];
+            if ($password === $dubPassword) {
+                $passmd5 = md5($password);
+                $login = explode("@", $email);
+                $inqury = "INSERT INTO users (login, password, mail) VALUES ('" . $login['0'] . "', '" . $passmd5 . "', '" . $email . "');";
+                $db->query($inqury);
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['password'] = $_POST['password'];
+                $_SESSION['id'] = $enter->id;
+                header('Location:index.php');
+            } else {
+                echo "<h4>You repeated incorrect password! Please try again.</h4>";
+            }
         }
     }
 }

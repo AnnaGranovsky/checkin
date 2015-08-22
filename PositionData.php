@@ -14,9 +14,9 @@ class PositionData{
         $db = Db::getInstance();
         return $db->query("INSERT INTO position VALUES(null, '$u_id', '$longitude', '$latitude', '$accuracy')");
     }
-    public function listData(){
+    public function listData($user_id){
         $db = Db::getInstance();
-        $arr = $db->query("SELECT * FROM position");
+        $arr = $db->query("SELECT * FROM position WHERE u_id='$user_id'");
         return json_encode($arr);
     }
 }

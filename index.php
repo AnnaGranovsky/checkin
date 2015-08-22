@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (empty($_SESSION['email'])){
-  header('Location:auth.php');
+  header('Location:registration.php');
 }
 ?>
 <!doctype html>
@@ -18,6 +18,7 @@ if (empty($_SESSION['email'])){
  
 <body>
     <div id="panel">
+      <a href="logout.php">Logout</a>
       <input onclick="clearMarkers();" type=button value="Hide Markers">
       <input onclick="showMarkers();" type=button value="Show All Markers">
       <input onclick="deleteMarkers();" type=button value="Delete Markers">
